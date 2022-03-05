@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 
 @Component({
-selector:'yser-pposts',
-template:`<div><h1>Users Posts</h1></div>`
+selector:'user-posts',
+template:`<div ><h1>I am Posts Component</h1></div>`
 })
 export class PostsComponent{
 

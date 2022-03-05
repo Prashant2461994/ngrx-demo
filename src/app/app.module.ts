@@ -1,3 +1,4 @@
+import { ApiService } from './services/api.service';
 import { YoutubeLayoutComponent } from './containers/layout/youtube-layout';
 import { YoutubeHeaderComponent } from './containers/layout/youtube-header';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,12 @@ import { UsersComponent } from './components/users-component';
 import { DashboardComponent } from './containers/dashboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
+import { HttpService } from './services/https.service';
+import { UserCardComponent } from './components/cards/user-card.component';
+import { PostCardComponent } from './components/cards/post-card.component';
+import { PostListComponent } from './components/lists/posts-list.component';
+import { UserListComponent } from './components/lists/users-list.component';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 
 
@@ -21,16 +28,21 @@ import { MaterialModule } from './material-module';
     YoutubeLayoutComponent,
     YoutubeFooterLayout,
     PostsComponent,
-    UsersComponent
+    UsersComponent,
+    UserCardComponent,
+    PostCardComponent,
+    PostListComponent,
+    UserListComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService,ApiService,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
