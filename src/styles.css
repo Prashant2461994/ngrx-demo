@@ -3,6 +3,6 @@
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .overlay{
-  height: 100vh;
-  width:100vh;
+  height: 100%;
+  width:100%;
 }

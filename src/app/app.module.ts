@@ -17,6 +17,9 @@ import { PostCardComponent } from './components/cards/post-card.component';
 import { PostListComponent } from './components/lists/posts-list.component';
 import { UserListComponent } from './components/lists/users-list.component';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { YoutubeRepository } from './services/youtube-repository';
+
 
 
 
@@ -40,9 +43,11 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
   ],
-  providers: [HttpService,ApiService,HttpClient],
+  providers: [HttpService,ApiService,HttpClient,YoutubeRepository],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
