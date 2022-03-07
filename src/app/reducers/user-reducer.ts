@@ -31,11 +31,11 @@ export function UserReducer(
 
     case USER_LIST_SUCCESS: {
       const updatedUsers = state.users.concat(action.payload.data);
-      return { ...state, loading: false, loaded: true, users: updatedUsers };
+      return { ...state, loading: false, loaded: true, users: updatedUsers ,error:false};
     }
 
     case USER_LIST_ERROR: {
-      return { ...state, error:true};
+      return { ...state, error:true,loading:false};
     }
 
     default: {

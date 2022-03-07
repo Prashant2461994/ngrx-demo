@@ -20,6 +20,7 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store';
 import { YoutubeRepository } from './services/youtube-repository';
 import { rootReducer } from './reducers';
+import { ErrorComponent } from './components/error.component';
 
 
 
@@ -36,7 +37,8 @@ import { rootReducer } from './reducers';
     UserCardComponent,
     PostCardComponent,
     PostListComponent,
-    UserListComponent
+    UserListComponent,
+    ErrorComponent
 
   ],
   imports: [

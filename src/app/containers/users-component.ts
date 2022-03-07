@@ -16,11 +16,7 @@ import { User } from '../models/user';
       [users]="this.users"
     ></user-lists>
     <mat-spinner *ngIf="this.loading"></mat-spinner>
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <mat-icon>error_outline</mat-icon>
-      <span>Error Occured!</span>
-      <button mat-raised-button color="warn" (click)="this.tryAgain()">Try Again</button>
-    </div>
+    <app-error *ngIf="this.error && !this.loading" (reload)="this.tryAgain()"></app-error>
   </div>`,
 })
 export class UsersComponent implements OnInit {
@@ -46,8 +42,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-
-  tryAgain(){
+  tryAgain() {
     this.youtubeRepo.getUserList(true);
   }
 }
