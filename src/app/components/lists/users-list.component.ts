@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'user-lists',
   template: `
-  <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="center start" class="overlay">
+  <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="30px">
     <user-card [user]="user" *ngFor="let user of users"></user-card>
   </div>`,
 })

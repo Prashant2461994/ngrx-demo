@@ -12,7 +12,7 @@ export class ApiService{
 
   }
 
-  getAllPosts():Observable<User[]>{
+  getAllUsers():Observable<User[]>{
     return this.httpService.get('/users').pipe(map(data => data as User[]));
   }
 

@@ -1,8 +1,8 @@
-import { PostsComponent } from './components/post-component';
+import { PostsComponent } from './containers/post-component';
 import { DashboardComponent } from './containers/dashboard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersComponent } from './components/users-component';
+import { UsersComponent } from './containers/users-component';
 
 const routes: Routes = [
   {
