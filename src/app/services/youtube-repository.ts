@@ -1,8 +1,10 @@
 import { ApiService } from './api.service';
 import {
+  UserDeleteAction,
   UserListErrorAction,
   UserListRequestAction,
   UserListSuccessAction,
+  UserUpdateAction,
 } from './../actions/user-action';
 import {
   getUserError,
@@ -32,20 +34,33 @@ export class YoutubeRepository {
     const getUserData: Observable<User[]> = this.store.select(getUsers);
     const error$ = this.store.select(getUserError);
 
-    combineLatest([loaded$, loading$]).pipe(take(1)).subscribe((data) => {
-      if ((!data[0] && !data[1]) || force) {
-        this.store.dispatch(new UserListRequestAction());
-        this.apiService.getAllUsers().subscribe(
-          (res) => {
-            this.store.dispatch(new UserListSuccessAction({ data: res }));
-          },
-          (error) => {
-            this.store.dispatch(new UserListErrorAction());
-          }
-        );
-      }
-    });
+    combineLatest([loaded$, loading$])
+      .pipe(take(1))
+      .subscribe((data) => {
+        if ((!data[0] && !data[1]) || force) {
+          this.store.dispatch(new UserListRequestAction());
+          this.apiService.getAllUsers().subscribe(
+            (res) => {
+              this.store.dispatch(new UserListSuccessAction({ data: res }));
+            },
+            (error) => {
+              this.store.dispatch(new UserListErrorAction());
+            }
+          );
+        }
+      });
 
     return [loading$, getUserData, error$];
   }
+
+  deleteUser(id: number) {
+    // first we will call actual delete api
+    this.store.dispatch(new UserDeleteAction({ id }));
+  }
+
+ updateUser(data:User){
+   // first send details to actual api
+   this.store.dispatch(new UserUpdateAction({data:data}));
+ }
+
 }

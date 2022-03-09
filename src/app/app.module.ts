@@ -21,6 +21,10 @@ import { StoreModule } from '@ngrx/store';
 import { YoutubeRepository } from './services/youtube-repository';
 import { rootReducer } from './reducers';
 import { ErrorComponent } from './components/error.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { UpdateUserComponent } from './components/update_user.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -38,7 +42,8 @@ import { ErrorComponent } from './components/error.component';
     PostCardComponent,
     PostListComponent,
     UserListComponent,
-    ErrorComponent
+    ErrorComponent,
+    UpdateUserComponent
 
   ],
   imports: [
@@ -47,7 +52,9 @@ import { ErrorComponent } from './components/error.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(rootReducer),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [HttpService,ApiService,HttpClient,YoutubeRepository],
   bootstrap: [AppComponent]

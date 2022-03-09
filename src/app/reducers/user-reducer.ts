@@ -1,7 +1,9 @@
 import {
+  USER_DELETE_ACTION,
   USER_LIST_ERROR,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
+  USER_UPDATE_ACTION,
 } from './../actions/user-action';
 import { Action } from './../actions/index';
 import { User } from '../models/user';
@@ -21,8 +23,8 @@ const initialState: UserReducerState = {
 };
 
 export function UserReducer(
-  state = initialState,
-  action: Action
+  state = initialState,// Contains initial state data
+  action: Action // Contains data with updated values
 ): UserReducerState {
   switch (action.type) {
     case USER_LIST_REQUEST: {
@@ -31,11 +33,28 @@ export function UserReducer(
 
     case USER_LIST_SUCCESS: {
       const updatedUsers = state.users.concat(action.payload.data);
-      return { ...state, loading: false, loaded: true, users: updatedUsers ,error:false};
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        users: updatedUsers,
+        error: false,
+      };
+    }
+
+    case USER_DELETE_ACTION: {
+      const users = state.users.filter((data) => data.id !== action.payload.id);
+      return { ...state, ...{ users } };
+    }
+
+    case USER_UPDATE_ACTION: {
+      const users = state.users.filter((data) => data.id !== action.payload.data.id);
+      const updatedUser = users.concat(action.payload.data);
+      return { ...state, ...{ users: updatedUser } };
     }
 
     case USER_LIST_ERROR: {
-      return { ...state, error:true,loading:false};
+      return { ...state, error: true, loading: false };
     }
 
     default: {
